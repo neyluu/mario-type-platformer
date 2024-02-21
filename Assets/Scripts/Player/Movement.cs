@@ -7,29 +7,33 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D playerRigidBody;
-    [SerializeField] private GameObject groundCheck;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float moveSpeed = 8f;
     [SerializeField] private float jumpPower = 16f;
     [SerializeField] private bool isFacingRight = true;
     
     private float horizontalMove;
 
-    // Start is called before the first frame update
     void Start()
     {
         playerRigidBody.freezeRotation = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
         horizontalMove = Input.GetAxisRaw("Horizontal");
 
         Flip();
 
-        if(Input.GetKeyDown("space"))
+        if(Input.GetButtonDown("Jump") && IsGrounded())
         {
-            playerRigidBody.velocity = new Vector2(horizontalMove * moveSpeed, jumpPower);
+            playerRigidBody.velocity = new Vector2(playerRigidBody.velocity.x, jumpPower);
+        }
+
+        if(Input.GetButtonUp("Jump") && playerRigidBody.velocity.y > 0f)
+        {
+            playerRigidBody.velocity = new Vector2(playerRigidBody.velocity.x, playerRigidBody.velocity.y * 0.5f);
         }
     }
 
@@ -49,4 +53,9 @@ public class Movement : MonoBehaviour
         }
     }
 
+
+    private bool IsGrounded()
+    {
+        return Physics2D.OverlapCircle(groundCheck.position, .2f, groundLayer);
+    }
 }
