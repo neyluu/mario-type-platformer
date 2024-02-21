@@ -505,9 +505,11 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  moveSpeed: 8
+  moveSpeed: 4
+  runningMultiplier: 2
   jumpPower: 10
   isFacingRight: 1
+  isRunning: 0
 --- !u!70 &1367498877
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

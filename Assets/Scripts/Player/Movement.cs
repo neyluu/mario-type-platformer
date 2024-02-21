@@ -10,10 +10,12 @@ public class Movement : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float moveSpeed = 8f;
+    [SerializeField] private float runningMultiplier = 2f;
     [SerializeField] private float jumpPower = 16f;
     [SerializeField] private bool isFacingRight = true;
     
     private float horizontalMove;
+    public bool isRunning = false;
 
     void Start()
     {
@@ -24,8 +26,25 @@ public class Movement : MonoBehaviour
     {
         horizontalMove = Input.GetAxisRaw("Horizontal");
 
-        Flip();
+        //RUNNING
+        if(Input.GetKeyDown(KeyCode.LeftShift) && IsGrounded())
+        {
+            if(!isRunning)
+            {
+                moveSpeed *= runningMultiplier;
+                isRunning = true;
+            }
+        }
+        if(Input.GetKeyUp(KeyCode.LeftShift) && isRunning)
+        {
+            if(runningMultiplier != 0)
+            {
+                moveSpeed /= runningMultiplier;
+                isRunning = false;
+            }
+        }
 
+        //JUMPING
         if(Input.GetButtonDown("Jump") && IsGrounded())
         {
             playerRigidBody.velocity = new Vector2(playerRigidBody.velocity.x, jumpPower);
@@ -35,6 +54,8 @@ public class Movement : MonoBehaviour
         {
             playerRigidBody.velocity = new Vector2(playerRigidBody.velocity.x, playerRigidBody.velocity.y * 0.5f);
         }
+
+        Flip();
     }
 
     private void FixedUpdate()
@@ -42,6 +63,7 @@ public class Movement : MonoBehaviour
         playerRigidBody.velocity = new Vector2(horizontalMove * moveSpeed, playerRigidBody.velocity.y);
     }
 
+    //Fliping character when changing moving direction
     private void Flip()
     {
         if(isFacingRight && horizontalMove < 0f || !isFacingRight && horizontalMove > 0f)
@@ -53,9 +75,9 @@ public class Movement : MonoBehaviour
         }
     }
 
-
     private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, .2f, groundLayer);
     }
 }
+
