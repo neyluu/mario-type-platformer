@@ -476,7 +476,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -502,6 +502,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerRigidBody: {fileID: 1367498875}
   groundCheck: {fileID: 1379357233}
+  moveSpeed: 8
+  jumpPower: 10
+  isFacingRight: 1
 --- !u!70 &1367498877
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

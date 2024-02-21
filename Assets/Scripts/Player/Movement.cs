@@ -24,7 +24,11 @@ public class Movement : MonoBehaviour
     void Update()
     {
         horizontalMove = Input.GetAxisRaw("Horizontal");
-        Debug.Log(horizontalMove);
+
+        if(Input.GetKeyDown("space"))
+        {
+            playerRigidBody.velocity = new Vector2(horizontalMove * moveSpeed, jumpPower);
+        }
     }
 
     private void FixedUpdate()
