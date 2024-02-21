@@ -25,6 +25,8 @@ public class Movement : MonoBehaviour
     {
         horizontalMove = Input.GetAxisRaw("Horizontal");
 
+        Flip();
+
         if(Input.GetKeyDown("space"))
         {
             playerRigidBody.velocity = new Vector2(horizontalMove * moveSpeed, jumpPower);
@@ -34,6 +36,17 @@ public class Movement : MonoBehaviour
     private void FixedUpdate()
     {
         playerRigidBody.velocity = new Vector2(horizontalMove * moveSpeed, playerRigidBody.velocity.y);
+    }
+
+    private void Flip()
+    {
+        if(isFacingRight && horizontalMove < 0f || !isFacingRight && horizontalMove > 0f)
+        {
+            isFacingRight = !isFacingRight;
+            Vector2 localScale = transform.localScale;
+            localScale.x *= -1;
+            transform.localScale = localScale;
+        }
     }
 
 }
