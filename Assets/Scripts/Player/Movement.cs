@@ -14,7 +14,6 @@ public class Movement : MonoBehaviour
     
     private bool isFacingRight = true;
     private float horizontalMove;
-    private bool isRunning = false;
 
     void Start()
     {
@@ -28,18 +27,18 @@ public class Movement : MonoBehaviour
         //RUNNING
         if(Input.GetKeyDown(KeyCode.LeftShift) && IsGrounded())
         {
-            if(!isRunning)
+            if(!playerStats.isRunning)
             {
                 playerStats.moveSpeed *= runningMultiplier;
-                isRunning = true;
+                playerStats.isRunning = true;
             }
         }
-        if(Input.GetKeyUp(KeyCode.LeftShift) && isRunning)
+        if(Input.GetKeyUp(KeyCode.LeftShift) && playerStats.isRunning)
         {
             if(runningMultiplier != 0)
             {
                 playerStats.moveSpeed /= runningMultiplier;
-                isRunning = false;
+                playerStats.isRunning = false;
             }
         }
 
@@ -55,6 +54,9 @@ public class Movement : MonoBehaviour
         }
 
         Flip();
+
+        playerStats.positionX = playerRigidBody.position.x;
+        playerStats.positionY = playerRigidBody.position.y;
     }
 
     private void FixedUpdate()
