@@ -6,18 +6,23 @@ public class CameraMovement : MonoBehaviour
 {
     [SerializeField] private PlayerStats playerStats;
 
-    [SerializeField] private Camera camera;
-    [SerializeField] Movement playerMovement;
+    [SerializeField] private Rigidbody2D cameraRigidBody;
 
-    // Start is called before the first frame update
+    private float horizontalMove;
+
     void Start()
     {
-        Debug.Log("Camera " + playerStats.moveSpeed);
+        
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+        horizontalMove = Input.GetAxisRaw("Horizontal");
+    }
 
+    private void FixedUpdate()
+    {
+        cameraRigidBody.velocity = new Vector2(horizontalMove * playerStats.moveSpeed, cameraRigidBody.velocity.y);
     }
 }

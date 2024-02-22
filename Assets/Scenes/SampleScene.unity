@@ -225,7 +225,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -257,8 +257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStats: {fileID: 11400000, guid: 71854602ffca88d47b84722d2bfac608, type: 2}
-  camera: {fileID: 519420031}
-  playerMovement: {fileID: 1367498876}
+  cameraRigidBody: {fileID: 519420033}
 --- !u!1 &1075595915
 GameObject:
   m_ObjectHideFlags: 0
