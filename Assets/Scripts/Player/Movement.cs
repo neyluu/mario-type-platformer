@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEditor.Callbacks;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -15,7 +14,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private bool isFacingRight = true;
     
     private float horizontalMove;
-    public bool isRunning = false;
+    private bool isRunning = false;
 
     void Start()
     {
