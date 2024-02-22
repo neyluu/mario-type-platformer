@@ -55,6 +55,7 @@ public class Movement : MonoBehaviour
 
         Flip();
 
+        //Saving current coordinats in platyerStats
         player.positionX = playerRigidBody.position.x;
         player.positionY = playerRigidBody.position.y;
     }

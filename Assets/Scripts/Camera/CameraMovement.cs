@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-// using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -16,14 +15,17 @@ public class CameraMovement : MonoBehaviour
 
     void Start()
     {
+        //Setting default camera size
         mainCamera.orthographicSize = defaultCameraSize;
     }
 
-    // Update is called once per frame
     void LateUpdate()
     {   
+        //Following player
         cameraRigidBody.position = new Vector3(player.positionX + offset.x, player.positionY + offset.y, offset.z);
 
+
+        //Camera zooming when player is running
         if(player.isRunning)
         {
             mainCamera.orthographicSize = cameraZoomWhenRunning;
