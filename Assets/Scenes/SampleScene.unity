@@ -256,6 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 406ce16959c41fd47aa643e1381d317b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerStats: {fileID: 11400000, guid: 71854602ffca88d47b84722d2bfac608, type: 2}
   camera: {fileID: 519420031}
   playerMovement: {fileID: 1367498876}
 --- !u!1 &1075595915
@@ -429,7 +430,6 @@ GameObject:
   - component: {fileID: 1367498875}
   - component: {fileID: 1367498877}
   - component: {fileID: 1367498876}
-  - component: {fileID: 1367498878}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -544,7 +544,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 816a9fd4c5665844cb6a3c8247effeb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStats: {fileID: 1367498878}
+  playerStats: {fileID: 11400000, guid: 71854602ffca88d47b84722d2bfac608, type: 2}
+  playerRigidBody: {fileID: 1367498875}
   groundCheck: {fileID: 1379357234}
   groundLayer:
     serializedVersion: 2
@@ -585,21 +586,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.02}
   m_Size: {x: 0.2, y: 0.28}
   m_Direction: 0
---- !u!114 &1367498878
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1367498872}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b52e203d51652f54ab4b49b6a2039ba3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rigidBody: {fileID: 1367498875}
-  moveSpeed: 4
-  jumpPower: 8
 --- !u!1 &1379357233
 GameObject:
   m_ObjectHideFlags: 0

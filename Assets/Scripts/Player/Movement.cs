@@ -7,6 +7,7 @@ public class Movement : MonoBehaviour
 {
     [SerializeField] private PlayerStats playerStats;
 
+    [SerializeField] public Rigidbody2D playerRigidBody;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float runningMultiplier = 2f;
@@ -17,7 +18,7 @@ public class Movement : MonoBehaviour
 
     void Start()
     {
-        playerStats.rigidBody.freezeRotation = true;
+        playerRigidBody.freezeRotation = true;
     }
 
     void Update()
@@ -45,12 +46,12 @@ public class Movement : MonoBehaviour
         //JUMPING
         if(Input.GetButtonDown("Jump") && IsGrounded())
         {
-            playerStats.rigidBody.velocity = new Vector2(playerStats.rigidBody.velocity.x, playerStats.jumpPower);
+           playerRigidBody.velocity = new Vector2(playerRigidBody.velocity.x, playerStats.jumpPower);
         }
 
-        if(Input.GetButtonUp("Jump") && playerStats.rigidBody.velocity.y > 0f)
+        if(Input.GetButtonUp("Jump") && playerRigidBody.velocity.y > 0f)
         {
-            playerStats.rigidBody.velocity = new Vector2(playerStats.rigidBody.velocity.x, playerStats.rigidBody.velocity.y * 0.5f);
+            playerRigidBody.velocity = new Vector2(playerRigidBody.velocity.x, playerRigidBody.velocity.y * 0.5f);
         }
 
         Flip();
@@ -58,7 +59,7 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        playerStats.rigidBody.velocity = new Vector2(horizontalMove * playerStats.moveSpeed, playerStats.rigidBody.velocity.y);
+        playerRigidBody.velocity = new Vector2(horizontalMove * playerStats.moveSpeed, playerRigidBody.velocity.y);
     }
 
     //Fliping character when changing moving direction
