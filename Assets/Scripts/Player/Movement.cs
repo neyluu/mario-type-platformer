@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private PlayerStats player;
 
     [SerializeField] public Rigidbody2D playerRigidBody;
     [SerializeField] private Transform groundCheck;
@@ -27,25 +27,25 @@ public class Movement : MonoBehaviour
         //RUNNING
         if(Input.GetKeyDown(KeyCode.LeftShift) && IsGrounded())
         {
-            if(!playerStats.isRunning)
+            if(!player.isRunning)
             {
-                playerStats.moveSpeed *= runningMultiplier;
-                playerStats.isRunning = true;
+                player.moveSpeed *= runningMultiplier;
+                player.isRunning = true;
             }
         }
-        if(Input.GetKeyUp(KeyCode.LeftShift) && playerStats.isRunning)
+        if(Input.GetKeyUp(KeyCode.LeftShift) && player.isRunning)
         {
             if(runningMultiplier != 0)
             {
-                playerStats.moveSpeed /= runningMultiplier;
-                playerStats.isRunning = false;
+                player.moveSpeed /= runningMultiplier;
+                player.isRunning = false;
             }
         }
 
         //JUMPING
         if(Input.GetButtonDown("Jump") && IsGrounded())
         {
-           playerRigidBody.velocity = new Vector2(playerRigidBody.velocity.x, playerStats.jumpPower);
+           playerRigidBody.velocity = new Vector2(playerRigidBody.velocity.x, player.jumpPower);
         }
 
         if(Input.GetButtonUp("Jump") && playerRigidBody.velocity.y > 0f)
@@ -55,13 +55,13 @@ public class Movement : MonoBehaviour
 
         Flip();
 
-        playerStats.positionX = playerRigidBody.position.x;
-        playerStats.positionY = playerRigidBody.position.y;
+        player.positionX = playerRigidBody.position.x;
+        player.positionY = playerRigidBody.position.y;
     }
 
     private void FixedUpdate()
     {
-        playerRigidBody.velocity = new Vector2(horizontalMove * playerStats.moveSpeed, playerRigidBody.velocity.y);
+        playerRigidBody.velocity = new Vector2(horizontalMove * player.moveSpeed, playerRigidBody.velocity.y);
     }
 
     //Fliping character when changing moving direction

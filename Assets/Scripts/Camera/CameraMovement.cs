@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private PlayerStats player;
 
     [SerializeField] private Rigidbody2D cameraRigidBody;
     [SerializeField] private Camera mainCamera;
@@ -21,9 +21,9 @@ public class CameraMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        cameraRigidBody.position = new Vector3(playerStats.positionX, playerStats.positionY + cameraOffsetY, 10);
+        cameraRigidBody.position = new Vector3(player.positionX, player.positionY + cameraOffsetY, 10);
 
-        if(playerStats.isRunning)
+        if(player.isRunning)
         {
             mainCamera.orthographicSize = cameraZoomWhenRunning;
         }
