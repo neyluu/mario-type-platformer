@@ -256,7 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 406ce16959c41fd47aa643e1381d317b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStats: {fileID: 11400000, guid: 71854602ffca88d47b84722d2bfac608, type: 2}
+  player: {fileID: 11400000, guid: 71854602ffca88d47b84722d2bfac608, type: 2}
   cameraRigidBody: {fileID: 519420033}
   mainCamera: {fileID: 519420031}
   cameraOffsetY: 2
@@ -547,7 +547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 816a9fd4c5665844cb6a3c8247effeb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStats: {fileID: 11400000, guid: 71854602ffca88d47b84722d2bfac608, type: 2}
+  player: {fileID: 11400000, guid: 71854602ffca88d47b84722d2bfac608, type: 2}
   playerRigidBody: {fileID: 1367498875}
   groundCheck: {fileID: 1379357234}
   groundLayer:
