@@ -259,7 +259,7 @@ MonoBehaviour:
   player: {fileID: 11400000, guid: 71854602ffca88d47b84722d2bfac608, type: 2}
   cameraRigidBody: {fileID: 519420033}
   mainCamera: {fileID: 519420031}
-  cameraOffsetY: 2
+  offset: {x: 0, y: 2, z: 0}
   defaultCameraSize: 5
   cameraZoomWhenRunning: 5.5
 --- !u!1 &1075595915
