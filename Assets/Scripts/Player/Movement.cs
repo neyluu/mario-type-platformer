@@ -5,20 +5,19 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D playerRigidBody;
+    [SerializeField] private PlayerStats playerStats;
+
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private float moveSpeed = 8f;
     [SerializeField] private float runningMultiplier = 2f;
-    [SerializeField] private float jumpPower = 16f;
-    [SerializeField] private bool isFacingRight = true;
     
+    private bool isFacingRight = true;
     private float horizontalMove;
     private bool isRunning = false;
 
     void Start()
     {
-        playerRigidBody.freezeRotation = true;
+        playerStats.rigidBody.freezeRotation = true;
     }
 
     void Update()
@@ -30,7 +29,7 @@ public class Movement : MonoBehaviour
         {
             if(!isRunning)
             {
-                moveSpeed *= runningMultiplier;
+                playerStats.moveSpeed *= runningMultiplier;
                 isRunning = true;
             }
         }
@@ -38,7 +37,7 @@ public class Movement : MonoBehaviour
         {
             if(runningMultiplier != 0)
             {
-                moveSpeed /= runningMultiplier;
+                playerStats.moveSpeed /= runningMultiplier;
                 isRunning = false;
             }
         }
@@ -46,12 +45,12 @@ public class Movement : MonoBehaviour
         //JUMPING
         if(Input.GetButtonDown("Jump") && IsGrounded())
         {
-            playerRigidBody.velocity = new Vector2(playerRigidBody.velocity.x, jumpPower);
+            playerStats.rigidBody.velocity = new Vector2(playerStats.rigidBody.velocity.x, playerStats.jumpPower);
         }
 
-        if(Input.GetButtonUp("Jump") && playerRigidBody.velocity.y > 0f)
+        if(Input.GetButtonUp("Jump") && playerStats.rigidBody.velocity.y > 0f)
         {
-            playerRigidBody.velocity = new Vector2(playerRigidBody.velocity.x, playerRigidBody.velocity.y * 0.5f);
+            playerStats.rigidBody.velocity = new Vector2(playerStats.rigidBody.velocity.x, playerStats.rigidBody.velocity.y * 0.5f);
         }
 
         Flip();
@@ -59,7 +58,7 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        playerRigidBody.velocity = new Vector2(horizontalMove * moveSpeed, playerRigidBody.velocity.y);
+        playerStats.rigidBody.velocity = new Vector2(horizontalMove * playerStats.moveSpeed, playerStats.rigidBody.velocity.y);
     }
 
     //Fliping character when changing moving direction
@@ -79,4 +78,3 @@ public class Movement : MonoBehaviour
         return Physics2D.OverlapCircle(groundCheck.position, .2f, groundLayer);
     }
 }
-

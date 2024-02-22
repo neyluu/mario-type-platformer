@@ -134,6 +134,8 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -215,6 +217,47 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &519420033
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 2
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 406ce16959c41fd47aa643e1381d317b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 519420031}
+  playerMovement: {fileID: 1367498876}
 --- !u!1 &1075595915
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,6 +429,7 @@ GameObject:
   - component: {fileID: 1367498875}
   - component: {fileID: 1367498877}
   - component: {fileID: 1367498876}
+  - component: {fileID: 1367498878}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -500,15 +544,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 816a9fd4c5665844cb6a3c8247effeb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerRigidBody: {fileID: 1367498875}
+  playerStats: {fileID: 1367498878}
   groundCheck: {fileID: 1379357234}
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  moveSpeed: 4
   runningMultiplier: 2
-  jumpPower: 10
-  isFacingRight: 1
 --- !u!70 &1367498877
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -544,6 +585,21 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.02}
   m_Size: {x: 0.2, y: 0.28}
   m_Direction: 0
+--- !u!114 &1367498878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367498872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b52e203d51652f54ab4b49b6a2039ba3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidBody: {fileID: 1367498875}
+  moveSpeed: 4
+  jumpPower: 8
 --- !u!1 &1379357233
 GameObject:
   m_ObjectHideFlags: 0
