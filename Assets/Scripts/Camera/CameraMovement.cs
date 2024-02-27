@@ -12,6 +12,9 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private Vector3 offset;
     [SerializeField] private int defaultCameraSize = 5;
     [SerializeField] private float cameraZoomWhenRunning = 8;
+    [SerializeField] private float cameraZoomSmoothing = .02f;
+
+    private float velocity = 2f;
 
     void Start()
     {
@@ -26,13 +29,13 @@ public class CameraMovement : MonoBehaviour
 
 
         //Camera zooming when player is running
-        if(player.isRunning)
+        if(player.isRunning && player.isMoving)
         {
-            mainCamera.orthographicSize = cameraZoomWhenRunning;
+            mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, cameraZoomWhenRunning, cameraZoomSmoothing);
         }
         else
         {
-            mainCamera.orthographicSize = defaultCameraSize;
+            mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, defaultCameraSize, cameraZoomSmoothing);
         }
     }
 }

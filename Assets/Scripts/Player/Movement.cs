@@ -63,6 +63,10 @@ public class Movement : MonoBehaviour
     private void FixedUpdate()
     {
         playerRigidBody.velocity = new Vector2(horizontalMove * player.moveSpeed, playerRigidBody.velocity.y);
+        
+        //Checking is player moving
+        if(horizontalMove != 0) player.isMoving = true;
+        else player.isMoving = false;
     }
 
     //Fliping character when changing moving direction
