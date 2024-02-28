@@ -11,6 +11,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float runningMultiplier = 2f;
+    [SerializeField] private float runningSmoothing = 1f;
     
     private bool isFacingRight = true;
     private float horizontalMove;
@@ -55,9 +56,9 @@ public class Movement : MonoBehaviour
 
         Flip();
 
-        //Saving current coordinats in platyerStats
-        player.positionX = playerRigidBody.position.x;
-        player.positionY = playerRigidBody.position.y;
+        //Saving current coordinats in playerStats
+        player.position.x = playerRigidBody.position.x;
+        player.position.y = playerRigidBody.position.y;
     }
 
     private void FixedUpdate()

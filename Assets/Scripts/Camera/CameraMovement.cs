@@ -14,8 +14,6 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private float cameraZoomWhenRunning = 8;
     [SerializeField] private float cameraZoomSmoothing = .02f;
 
-    private float velocity = 2f;
-
     void Start()
     {
         //Setting default camera size
@@ -25,7 +23,7 @@ public class CameraMovement : MonoBehaviour
     void LateUpdate()
     {   
         //Following player
-        cameraRigidBody.position = new Vector3(player.positionX + offset.x, player.positionY + offset.y, offset.z);
+        cameraRigidBody.position = new Vector3(player.position.x + offset.x, player.position.y + offset.y, offset.z);
 
 
         //Camera zooming when player is running

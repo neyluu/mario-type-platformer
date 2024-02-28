@@ -1,0 +1,1 @@
+- [ ] lepsze skakanie z krawędzi
