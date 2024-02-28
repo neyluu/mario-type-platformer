@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -12,7 +13,8 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private Vector3 offset;
     [SerializeField] private int defaultCameraSize = 5;
     [SerializeField] private float cameraZoomWhenRunning = 8;
-    [SerializeField] private float cameraZoomSmoothing = .02f;
+    [SerializeField] private float cameraSmoothing = .02f;
+    [SerializeField] private float cameraFollowSpeed = 9;
 
     void Start()
     {
@@ -20,20 +22,23 @@ public class CameraMovement : MonoBehaviour
         mainCamera.orthographicSize = defaultCameraSize;
     }
 
-    void LateUpdate()
-    {   
-        //Following player
-        cameraRigidBody.position = new Vector3(player.position.x + offset.x, player.position.y + offset.y, offset.z);
-
+    void FixedUpdate()
+    {
+        //Following player        
+        cameraRigidBody.position = new Vector3(
+            Mathf.Lerp(cameraRigidBody.position.x, player.position.x + offset.x, cameraSmoothing),
+            Mathf.Lerp(cameraRigidBody.position.y, player.position.y + offset.y, cameraSmoothing),
+            offset.z
+        );
 
         //Camera zooming when player is running
         if(player.isRunning && player.isMoving)
         {
-            mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, cameraZoomWhenRunning, cameraZoomSmoothing);
+            mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, cameraZoomWhenRunning, cameraSmoothing);
         }
         else
         {
-            mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, defaultCameraSize, cameraZoomSmoothing);
+            mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, defaultCameraSize, cameraSmoothing);
         }
     }
 }

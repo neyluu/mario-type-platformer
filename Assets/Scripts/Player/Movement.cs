@@ -49,10 +49,11 @@ public class Movement : MonoBehaviour
            playerRigidBody.velocity = new Vector2(playerRigidBody.velocity.x, player.jumpPower);
         }
 
-        if(Input.GetButtonUp("Jump") && playerRigidBody.velocity.y > 0f)
-        {
-            playerRigidBody.velocity = new Vector2(playerRigidBody.velocity.x, playerRigidBody.velocity.y * 0.5f);
-        }
+        //Jumping depending on time when space is pressed, currently disabled
+        // if(Input.GetButtonUp("Jump") && playerRigidBody.velocity.y > 0f)
+        // {
+        //     playerRigidBody.velocity = new Vector2(playerRigidBody.velocity.x, playerRigidBody.velocity.y * 0.5f);
+        // }
 
         Flip();
 
@@ -63,8 +64,12 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        playerRigidBody.velocity = new Vector2(horizontalMove * player.moveSpeed, playerRigidBody.velocity.y);
-        
+        //Player horizontal movement
+        Vector2 playerVelocity = playerRigidBody.velocity;
+        playerVelocity.x = horizontalMove * player.moveSpeed;
+        playerRigidBody.velocity = playerVelocity;
+
+
         //Checking is player moving
         if(horizontalMove != 0) player.isMoving = true;
         else player.isMoving = false;

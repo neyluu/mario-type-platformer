@@ -1,1 +1,2 @@
 - [ ] lepsze skakanie z krawędzi
+- [ ] stuttering podczas chodzenia

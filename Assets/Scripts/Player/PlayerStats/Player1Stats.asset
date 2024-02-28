@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52e203d51652f54ab4b49b6a2039ba3, type: 3}
   m_Name: Player1Stats
   m_EditorClassIdentifier: 
-  positionX: 10.294887
-  positionY: -2.353272
+  position: {x: -8.782298, y: -2.896471}
   moveSpeed: 4
   jumpPower: 10
   isMoving: 0
