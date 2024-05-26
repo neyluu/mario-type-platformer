@@ -24,9 +24,9 @@ public class Movement : MonoBehaviour
     void Update()
     {
         horizontalMove = Input.GetAxisRaw("Horizontal");
-
+        
         //RUNNING
-        if(Input.GetKeyDown(KeyCode.LeftShift) && IsGrounded())
+        if(Input.GetKeyDown(KeyCode.LeftShift) && IsGrounded() && player.stamina > 20)
         {
             if(!player.isRunning)
             {
@@ -42,11 +42,17 @@ public class Movement : MonoBehaviour
                 player.isRunning = false;
             }
         }
+        if(player.isRunning && player.stamina < 1)
+        {
+            player.moveSpeed /= runningMultiplier;
+            player.isRunning = false;
+        }
 
         //JUMPING
         if(Input.GetButtonDown("Jump") && IsGrounded())
         {
-           playerRigidBody.velocity = new Vector2(playerRigidBody.velocity.x, player.jumpPower);
+            playerRigidBody.velocity = new Vector2(playerRigidBody.velocity.x, player.jumpPower);
+            UseStamina(5);
         }
 
         //Jumping depending on time when space is pressed, currently disabled
@@ -69,10 +75,11 @@ public class Movement : MonoBehaviour
         playerVelocity.x = horizontalMove * player.moveSpeed;
         playerRigidBody.velocity = playerVelocity;
 
-
         //Checking is player moving
         if(horizontalMove != 0) player.isMoving = true;
         else player.isMoving = false;
+
+        StaminaMenagment();
     }
 
     //Fliping character when changing moving direction
@@ -90,5 +97,29 @@ public class Movement : MonoBehaviour
     private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, .2f, groundLayer);
+    }
+
+    private void StaminaMenagment()
+    {
+        if(player.isRunning && player.isMoving)
+        {
+            UseStamina(0.1f);
+        }
+        else
+        {
+            GetStamina(0.05f);
+        }
+    }
+
+    private void UseStamina(float amount)
+    {
+        if(player.stamina - amount > 0) player.stamina -= amount;
+        else player.stamina = 0;
+    }
+
+    private void GetStamina(float amount)
+    {
+        if(player.stamina + amount < player.maxStamina) player.stamina += amount;
+        else player.stamina = player.maxStamina;
     }
 }
